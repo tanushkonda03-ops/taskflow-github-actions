@@ -1,1 +1,20 @@
+name: My First GitHub Actions Workflow
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Welcome Message
+        run: echo "Hello, my first github actions workflow is running."
+      
+      - name: Check Node.js Version
+        run: node --version
+      - name: Success Message
+        run: echo "TaskFlow automation is working fine."
+      
