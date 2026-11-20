@@ -1,20 +1,35 @@
-name: My First GitHub Actions Workflow
+name: TaskFlow - Runner Setup
 
 on:
   push:
     branches:
-      - main
+      -main
 
 jobs:
   first-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Welcome Message
-        run: echo "Hello, my first github actions workflow is running."
-      
-      - name: Check Node.js Version
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.jobs
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Check Node version
         run: node --version
+
+      - name: Check npm version
+        run: npm --version
+
+      - name: Display Project Files
+        run: ls -la
+
+      - name: Display Working Directory
+        run: pwd
+
       - name: Success Message
-        run: echo "TaskFlow automation is working fine."
+        run: echo "Runner Setup Completed"
       
