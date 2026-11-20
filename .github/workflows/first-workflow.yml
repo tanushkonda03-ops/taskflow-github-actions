@@ -1,9 +1,10 @@
+
 name: TaskFlow - Runner Setup
 
 on:
   push:
     branches:
-      -main
+      - main
 
 jobs:
   first-job:
@@ -11,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
-      - name: Setup Node.jobs
-        uses: actions/setup-node@v7
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 24
 
@@ -32,4 +33,3 @@ jobs:
 
       - name: Success Message
         run: echo "Runner Setup Completed"
-      
