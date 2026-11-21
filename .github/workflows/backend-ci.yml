@@ -1,0 +1,42 @@
+name: TaskFlow Backend CI
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  backend-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install Dependencies
+        run: npm ci
+        working-directory: backend
+
+      - name: Run Linter
+        run: npm run lint
+        working-directory: backend
+
+      - name: Run Unit Test
+        run: npm test -- --runInBand --watch=false
+        working-directory: backend
+
+      - name: Build Backend
+        run: npm run build
+        working-directory: backend
+
+      - name: CI Success
+        run: echo "Backend CI Completed Successfully"
+      
+        
